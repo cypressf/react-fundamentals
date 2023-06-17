@@ -19,18 +19,13 @@ const smallBox = <Box size="small" style={{backgroundColor: "lightblue"}}>small 
 const mediumBox = <Box size="medium" style={{backgroundColor: "pink"}}>medium pink box</Box>
 const largeBox = <Box size="large" style={{backgroundColor: "orange"}}>large orange box</Box>
 
-const sizeClass = {
-  small: "box--small",
-  medium: "box--medium",
-  large: "box--large",
-}
-
-function Box({children, size, style}) {
+function Box({children, size, style, ...otherProps}) {
+  const sizeClass = size ? `box--${size}` : ""
   return (
-    <div className={"box " + sizeClass[size]} style={{
-      ...style,
+    <div className={"box " + sizeClass} style={{
       fontStyle: "italic",
-    }}>{children}</div>
+      ...style,
+    }} {...otherProps}>{children}</div>
   )
 }
 
